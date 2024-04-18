@@ -1,20 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:storeapp/login_page.dart';
+import 'package:storeapp/home.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-void main() {
-  runApp(const MainApp());
+Future<void> main() async {
+  await dotenv.load();
+  runApp(const MyApp());
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!!'),
-        ),
-      ),
+    return MaterialApp(
+        title: 'myapp',
+        initialRoute: '/',
+        routes: {
+          '/': (context) => const LoginPage(),
+          '/home': (context) => const HomePage()
+        },
+        // theme: ThemeData(
+        //     appBarTheme: const AppBarTheme(backgroundColor: Colors.orange)),
+        // home: App();
     );
   }
 }
